@@ -1,0 +1,174 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row full-height-giris h-100">
+    <!-- LEFT SIDE -->
+    <div class="col-lg-6 giris-left-side d-none d-lg-block">
+      <a class="logo-beyaz" href="/"><img src="{% static './img/neoslogo.png' %}" alt="" /></a>
+      <div class="slider giris-slider p-0">
+        <div id="carouselExampleInterval" class="carousel giris-carousel slide p-0" data-bs-ride="carousel">
+          <div class="carousel-indicators m-auto">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+              <img src="{% static 'img/giris-kayit/wp1.jpg' %}" class="d-block w-100" alt="..." />
+              <div class="carousel-caption text-start w-100 px-0">
+
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+              <img src="{% static 'img/giris-kayit/wp2.jpg' %}" class="d-block w-100" alt="..." />
+              <div class="carousel-caption text-start px-">
+
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+              <img src="{% static 'img/giris-kayit/wp3.jpg' %}" class="d-block w-100" alt="..." />
+              <div class="carousel-caption text-start px-0">
+                <h2 class="mb-4">
+                  Üyeliğin sayesinde hızlıca biletini al.
+                </h2>
+                <h3>Satın aldığın tüm biletlere profilinden ulaş.</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT SIDE -->
+    <div class="col-lg-6 giris-right-side d-flex flex-column d-lg-flex ">
+      <!--ZATEN HESABIN VAR MI? TOP LINK CONTAINER -->
+      <div class="sign-in-link-container me-3 mt-4 mb-5 align-items-center align-bottom">
+        <a href="inde" class="float-start d-lg-none"><img src="./img/giris-kayit/tmlogo-blue.png" class="logo-blue"
+            alt="" /></a>
+        <div class="hesabin-varmi float-end">
+          <span class="do-not-have-account me-2 fs-6 d-none d-md-inline">Zaten hesabınız var mı?</span>
+          <a href="{% url 'giris-yap' %}"><button type="button" class="btn hesap-olustur-button">
+              Giriş Yap
+            </button></a>
+        </div>
+      </div>
+      <!-- FORM GROUP -->
+      <div class="hesapolustur-form-container m-auto mt-5">
+        <form class="hesapolustur-form-kapsayici m-auto flex-column text-center align-items-center w-100"
+          style="place-content: center" method="POST">
+          {% csrf_token %}
+          <div class="sign-in-title mb-3">
+            <h1 style="font-size: 26px; font-weight: 600">Hesap Oluştur</h1>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 mb-lg-2">
+              <div class="giris-form form-floating">
+                <!-- İsim İnput -->
+                <input type="text" class="form-control mb-3 rounded-3" id="kayitad" placeholder="Ad" required
+                  name="isim" />
+                <label for="kayitad" class="float-start form-label">Ad</label>
+              </div>
+            </div>
+            <div class="col-sm-6 mb-lg-2">
+              <div class="giris-form form-floating">
+                <!-- Soyisim İnput -->
+                <input type="text" class="form-control mb-3 rounded-3" id="kayitsoyad" placeholder="Ad" required
+                  name="soyisim" />
+                <label for="kayitsoyad" class="float-start form-label">Soyad</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 mb-lg-2">
+              <div class="giris-form form-floating">
+                <!-- Tarih İnput -->
+                <input type="date" class="form-control mb-3 rounded-3" id="hesapDate" required name="dogumtarihi" />
+                <label for="date" class="float-start form-label">Doğum Tarihi</label>
+              </div>
+            </div>
+            <div class="col-sm-6 mb-lg-2">
+              <div class="giris-form" style="height: 58px;  ">
+                <!-- Cinsiyet Select -->
+                <select class="form-select select-canim" style="height: 58px;" name="cinsiyet">
+                  <option data-hidden="true" hidden>CİNSİYET</option>
+                  <option>Kadın</option>
+                  <option>Erkek</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 mb-lg-2">
+              <div class="giris-form form-floating">
+                <!-- Mail İnput -->
+                <input type="email" class="form-control mb-3 rounded-3" id="kayitemail"
+                  placeholder="Mail adresinizi girin" required name="email"/>
+                <label for="email" class="float-start form-label">E-posta</label>
+              </div>
+            </div>
+            <div class="col-sm-6 mb-lg-2">
+              <div class="giris-form form-floating">
+                <!-- Telefon İnput -->
+                <input type="tel" class="form-control mb-3 rounded-3" id="kayitad" placeholder="kayittelefon"
+                  required name="telefon"/>
+                <label for="kayittelefon" class="float-start form-label">Telefon</label>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-6 mb-lg-2">
+              <div class="giris-form form-floating">
+                <!-- Şifre İnput -->
+                <input type="Kayitpassword" class="form-control mb-3 rounded-3" id="kayitPassword"
+                  placeholder="Mail adresinizi girin" required name="sifre"/>
+                <i class="fa-regular fa-eye sifre-icon" id="showPassword"></i>
+                <i class="fa-regular fa-eye-slash sifre-icon" id="hidePassword"></i>
+                <label for="Kayitpassword" class="float-start form-label">Şifre</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- HESAP OLUŞTUR BUTON -->
+          <button type=" submit" class="btn btn-primary mb-2" id="hesapolustur-btn">
+            Hesap Oluştur
+          </button>
+        </form>
+        {% include "includes/_mesaj.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- !fontawesome-script -->
+<script src="https://kit.fontawesome.com/5dfa75166b.js" crossorigin="anonymous"></script>
+<!-- !bootstrap-script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+<script>
+
+  // Show password
+  const passwordInput = document.getElementById("kayitPassword");
+  const showPasswordIcon = document.getElementById("showPassword");
+  const hidePasswordIcon = document.getElementById("hidePassword");
+
+  showPasswordIcon.addEventListener("click", function () {
+    passwordInput.type = "text";
+    showPasswordIcon.style.display = "none";
+    hidePasswordIcon.style.display = "inline-block";
+  });
+
+  hidePasswordIcon.addEventListener("click", function () {
+    passwordInput.type = "password";
+    showPasswordIcon.style.display = "inline-block";
+    hidePasswordIcon.style.display = "none";
+  });
+
+</script>
+
+{% endblock content %}

@@ -1,0 +1,96 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row full-height-giris h-100">
+    <!-- LEFT SIDE -->
+    <div class="col-lg-6 giris-left-side d-none d-lg-block">
+      <a class="logo-beyaz" href="/"><img src="{% static './img/neoslogo.png'%}" alt=""></a>
+      <div class="slider giris-slider p-0">
+        <div id="carouselExampleInterval" class="carousel giris-carousel slide p-0" data-bs-ride="carousel">
+          <div class="carousel-indicators m-auto">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+              <img src="{% static './img/giris-kayit/wp1.jpg'%}" class="d-block w-100" alt="...">
+              <div class="carousel-caption text-start w-100 px-0">
+                <h2 class="mb-4">Biletix’e Üye Ol!</h2>
+                <h3>E-posta gönderimlerine izin ver, binlerce etkinlik arasında kaybolma.</h3>
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+              <img src="{% static './img/giris-kayit/wp2.jpg'%}" class="d-block w-100" alt="...">
+              <div class="carousel-caption text-start px-">
+                <h2 class="mb-4">Yeni etkinliklerden ilk önce senin haberin olsun.</h2>
+                <h3>İlgi alanlarına ve yaşadığın konuma göre etkinlikler e-posta adresine gelsin.</h3>
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="3000">
+              <img src="{% static './img/giris-kayit/wp3.jpg'%}" class="d-block w-100" alt="...">
+              <div class="carousel-caption text-start px-0">
+                <h2 class="mb-4">Üyeliğin sayesinde hızlıca biletini al.</h2>
+                <h3>Satın aldığın tüm biletlere profilinden ulaş.</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- RIGHT SIDE -->
+    <div class="col-lg-6 giris-right-side d-flex flex-column d-lg-flex">
+      <!-- HESABIN YOK MU? TOP LINK CONTAINER -->
+      <div class="sign-in-link-container me-3 mt-4 align-items-center align-bottom">
+        <a href="/" class="float-start d-lg-none"><img src="{./img/Giris:Kayit/tmlogo-blue.png}" class="logo-blue" alt=""></a>
+        <div class="hesabin-yokmu float-end">
+          <span class="do-not-have-account  me-2 fs-6 d-none d-md-inline">Hesabın yok mu?</span>
+          <a href="{% url 'hesap-olustur' %}"><button type="button" class="btn hesap-olustur-button">Hesap
+              Oluştur</button></a>
+        </div>
+      </div>
+      <!-- FORM GROUP -->
+      <div class="giris-form-container m-auto top-50 ">
+        <form class="giris-form-kapsayici m-auto flex-column text-center align-items-center w-100"
+          style="place-content: center;" method="POST">
+          {% csrf_token %}
+          <div class="sign-in-title mb-3">
+            <h1 style="font-size: 26px; font-weight: 600;">Giriş Yap</h1>
+          </div>
+          <div class="giris-form form-floating w-100">
+            <!-- Mail İnput -->
+            <input type="email" class="form-control mb-3 rounded-3" id="email" placeholder="Mail adresinizi girin"
+              required name="username"/>
+            <label for="email" class="float-start form-label">E-posta</label>
+          </div>
+          <div class="giris-form form-floating w-100">
+            <!-- Şifre İnput -->
+            <input type="password" class="form-control mb-4 rounded-3" id="password1" placeholder="Şifrenizi girin" name="password"/>
+            <label for="password1" class="float-start form-label">Şifre</label>
+          </div>
+          <div class="aktivasyon-sifremi-unuttum d-flex  justify-content-between w-100 mb-4">
+            <a href="#" class="text-decoration-none" style="color: #646464; font-size: 14px;">Aktivasyon linki
+              gönder</a>
+            <a href="#" class="text-decoration-none" style="font-size: 14px;">Şifremi Unuttum</a>
+          </div>
+          <button type="submit" class="btn btn-primary w-100" id="girisyap-btn">
+            Giriş Yap
+          </button>
+        </form>
+       {% include "includes/_mesaj.html" %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+ 
+

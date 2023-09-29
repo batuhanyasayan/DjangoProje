@@ -1,0 +1,84 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+{% include "includes/_navbar.html" %}
+  <div class="sidenav-content mt-3 container">
+    <div class="side-nav-header">
+      <div class="row">
+        {% include "includes/_hesabim-left-side.html" %}
+
+        <div class="col-lg-9 col-sm-12 right-side hessap">
+          <!-- hesabım-nav-başlangıç -->
+
+          <!--! KİŞİSEL BİLGİLERİM BAŞLANGIÇ  -->
+
+          {% if request.user.is_authenticated %}
+          <div id="" class=" kisiselBilgilerim mt-4">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-lg-6 col-md-12 mb-5">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingPassword" value="{{request.user.musteri.isim}}" placeholder="Ad"
+                      name="isim" />
+                    <label for="floatingPassword">Ad</label>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-5">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingText" value="{{request.user.musteri.soyisim}}" placeholder="Soyad"
+                      name="soyisim" />
+                    <label for="floatingPassword">Soyad</label>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-5">
+                  <div class="form-floating">
+                    <input type="date" class="form-control" id="birthDate" name="dogumtarihi" value="{{request.user.musteri.dogum_tarihi|date:'Y-m-d'}}"
+                      placeholder="Doğum Tarihi" />
+                    <label for="birthDate">Doğum Tarihi</label>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-5">
+                  <div class="form-floating">
+                    <select id="cinsiyet" name="cinsiyet" class="form-select">
+                      <option value="Erkek" {% if request.user.musteri.cinsiyet == 'Erkek' %} selected {% endif %} >Erkek</option>
+                      <option value="Kadın" {% if request.user.musteri.cinsiyet == 'Kadın' %} selected {% endif %} >Kadın</option>
+                    </select>
+                    <label for="cinsiyet">Cinsiyet</label>
+                  </div>
+                </div>
+                <h5>İletişim Bilgileri</h5>
+                <span>Telefon numaranızı değiştirmek istediğinizde yeni numaranızı
+                  doğrulamanız gerekmektedir.</span>
+                <div class="row mt-3">
+                  <div class="col-md-4 col-sm-12 pb-4">
+                    <div class="form-floating">
+                      <input type="tel" class="form-control" id="floatingTel" placeholder="Telefon Numarası" value="{{request.user.musteri.cep_telefonu}}"
+                        disabled />
+                      <label for="floatingEmail">Telefon Numarası</label>
+                    </div>
+                  </div>
+                  <div class="col-md-8 col-sm-12 pb-4">
+                    <div class="form-floating">
+                      <input type="email" class="form-control" id="floatingEmail" placeholder="E-posta" value="{{request.user.musteri.email}}"
+                        disabled />
+                      <label for="floatingEmail">E-posta</label>
+                    </div>
+                  </div>
+                  <div class="degisiklikKaydet guncelle">
+                    <button type="submit" class="btn btn-primary">
+                      Değişiklikleri Kaydet
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          {% endif %}
+          <!--! KİŞİSEL BİLGİLERİM SON  -->
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
