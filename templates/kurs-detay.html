@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+{% for i in kurs  %}
+
+
+
+
+{% endfor %}
+{% for i in kurs  %}
+<section class="bg-white space-sm">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 mb-4 mb-sm-0">
+                {% if i.resim %}
+                <img id="MainContentPlaceHolder_courseImage" class="rounded img-fluid w-50" src="{{i.resim.url}}">
+                {% else %}
+            <img id="MainContentPlaceHolder_courseImage" class="rounded img-fluid" src="https://img-c.udemycdn.com/course/750x422/1258436_2dc3_4.jpg">
+                {% endif %}
+            </div>
+            <!--end of col-->
+            <div class="col-lg-7 d-flex flex-column justify-content-between mr-auto ml-auto">
+                <div>
+                    <h1 class="mb-2">
+                       {{i.isim}}</h1>
+                    <p class="lead mb-3 h2">
+                        {{i.kisa_aciklama }}
+                    </p>
+                    <div>
+                        <a id="MainContentPlaceHolder_LinkUdemy" class="btn btn-danger btn-block" href="https://www.udemy.com/course/komple-web-developer-kursu/?couponCode=24EYLUL2023" target="_blank">İndirim kuponu için tıklayınız</a>
+                    </div>
+                    <div class="mt-2">
+                        <ul class="list-inline text-small d-inline-block mb-3">
+                            <li class="list-inline-item">
+                                <i class="fas fa-user-graduate"></i>
+                                38115
+                            </li>
+                            <li class="list-inline-item">
+                                <i class="fas fa-comment"></i>
+                                13229
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <article class="readmore container w-50">
+        {{i.aciklama | safe}}
+    </article>
+</section>
+{% endfor %}
+    
+{% endblock content %}

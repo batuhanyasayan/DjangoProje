@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="kurslar">
+        {% if kurs|length > 0 %}
+        {% for i in kurs %}
+
+
+        <div class="card kurs">
+            <div class="card-body">
+                <div class="media">
+                    <img alt="Komple Uygulamalı Web Geliştirme Eğitimi" src="{{i.resim.url}}"
+                        class="avatar avatar-square avatar-lg lazy" width="100">
+                    <div class="media-body">
+                        <h2 class="h5 mb-0">{{i.isim}}</h2>
+                        <span>{{i.aciklama | safe}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <div class="text-small">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <i class="fas fa-user"></i>
+                            38115
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <a href="https://www.udemy.com/course/komple-web-developer-kursu/?couponCode=24EYLUL2023"
+                        class="btn btn-sm btn-danger" target="_blank">
+                        <i class="fas fa-chevron-circle-right"></i>
+                        İndirimli Kupon Al
+                    </a>
+                    <a href="{% url 'kurs-detay' i.slug %}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-chevron-circle-right"></i>
+                        Kursu İncele
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+        {% else %}
+        <h1>KURS BULUNAMADI</h1>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+{% endblock content %}

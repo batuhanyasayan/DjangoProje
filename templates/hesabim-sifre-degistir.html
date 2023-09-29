@@ -1,0 +1,117 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
+{% include "includes/_navbar.html" %}
+  <div class="sidenav-content mt-3 container">
+    <div class="side-nav-header">
+      <div class="row">
+        <!-- hesabım-left-side-başlangıç -->
+        {% include "includes/_hesabim-left-side.html" %}
+        <div class="col-lg-9 col-sm-12 right-side hessap">
+            <!-- hesabım-nav-başlangıç -->
+        
+          <!--! ŞİFRE DEĞİŞTİR BAŞLANGIÇ  -->
+          <form method="POST">
+            {% csrf_token %}
+            <div id="" class="sifreDegistir">
+              <div class="row">
+                
+                <!-- mevcut-sifre -->
+                <div class="col-lg-6 col-md-12 mb-5">
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="currentPassword" placeholder="Mevcut Şifre"
+                      name="mevcut-sifre" />
+                    <label for="currentPassword">Mevcut Şifre</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12 mb-5">
+                      <div class="form-floating">
+                        <!-- Yeni-Sifre -->
+                        <input type="password" class="form-control" id="newPassword" placeholder="Yeni Şifre"
+                          name="yeni-sifre" />
+                          <i class="fa-regular fa-eye sifre-icon" id="showPassword"></i>
+                <i class="fa-regular fa-eye-slash sifre-icon" id="hidePassword"></i>
+                        <label for="newPassword">Yeni Şifre</label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                      <div class="form-floating">
+                        <!-- Yeni Sifre Tekrar -->
+                        <input type="password" class="form-control" id="confirmNewPassword"
+                          placeholder="Yeni Şifre (Tekrar)" name="yeni-sifre-tekrar" />
+                          <i class="fa-regular fa-eye sifre-icon" id="showPassword2"></i>
+                          <i class="fa-regular fa-eye-slash sifre-icon" id="hidePassword2"></i>
+                        <label for="confirmNewPassword">Yeni Şifre (Tekrar)</label>
+                        <p class="error-message" id="passwordMismatchError" style="display: none">
+                          Yeni şifreler uyuşmuyor.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sifreOzellikleri">
+                <p>
+                  <i class="requirement-icon fa-solid fa-circle-xmark fs-5"></i>
+                  Şifreniz en az 8 karakterden oluşmalıdır.
+                </p>
+                <p>
+                  <i class="requirement-icon fa-solid fa-circle-xmark fs-5"></i>
+                  Şifreniz en az bir harf içermelidir.
+                </p>
+                <p>
+                  <i class="requirement-icon fa-solid fa-circle-xmark fs-5"></i>
+                  Şifreniz en az bir rakam veya özel karakter içermelidir.
+                </p>
+              </div>
+  
+              <div class="col-12 guncelle">
+                <button type="submit" class="btn btn-primary" id="updateButton">
+                  Güncelle
+                </button>
+              </div>
+            </div>
+          </form>
+          <!--! ŞİFRE DEĞİŞTİR SON  -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+    // Show password
+    const passwordInput = document.getElementById("newPassword");
+    const passwordInput2 = document.getElementById("confirmNewPassword");
+    const showPasswordIcon = document.getElementById("showPassword");
+    const hidePasswordIcon = document.getElementById("hidePassword");
+    const showPasswordIcon2 = document.getElementById("showPassword2");
+    const hidePasswordIcon2 = document.getElementById("hidePassword2");
+  
+    showPasswordIcon.addEventListener("click", function () {
+      passwordInput.type = "text";
+      showPasswordIcon.style.display = "none";
+      hidePasswordIcon.style.display = "inline-block";
+    });
+    showPasswordIcon2.addEventListener("click", function () {
+      passwordInput.type = "text";
+      showPasswordIcon.style.display = "none";
+      hidePasswordIcon.style.display = "inline-block";
+    });
+  
+    hidePasswordIcon.addEventListener("click", function () {
+      passwordInput.type = "password";
+      showPasswordIcon.style.display = "inline-block";
+      hidePasswordIcon.style.display = "none";
+    });
+    hidePasswordIcon2.addEventListener("click", function () {
+      passwordInput.type = "password";
+      showPasswordIcon.style.display = "inline-block";
+      hidePasswordIcon.style.display = "none";
+    });
+  
+  </script>
+  {% endblock content %}
